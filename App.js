@@ -24,7 +24,6 @@ export default function App() {
   }
 
   const renderItem = ({ item,index }) => (
-    
     <Item title={item} position = {index} />
   );
 
@@ -32,7 +31,6 @@ export default function App() {
     <View style={styles.item}>
       <Text style={styles.title}>{title}</Text>
       <Button style ={{alignItems :'center'}} title="Delete" onPress={()=> {onDeleteCourse(position)}}>
-        
       </Button>
     </View>
   );

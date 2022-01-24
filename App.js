@@ -12,9 +12,11 @@ import GoalInput from "./comonent/GoalInput";
 export default function App() {
   
   const [course, setCourse] = useState([]);
-
+  const [isAddModal , setIsAddModal] = useState(false);
   const addCourse = addCourseItem => {
     setCourse((currentCourse) => [...course, addCourseItem]);
+
+    setIsAddModal(false);
   };
 
   function onDeleteCourse(position) {
@@ -41,15 +43,21 @@ export default function App() {
     </View>
   );
 
+  const cancelButton = () => {
+    setIsAddModal(false);
+  }
+
   return (
     <View style={{ padding: 50 }}>
 
-      <GoalInput addCourse = {addCourse}/>     
+      <Button  title="Show Details" onPress={() => setIsAddModal(true)}/>
+
+      <GoalInput visible={isAddModal} addCourse = {addCourse} onCancel ={cancelButton}/>     
 
       <FlatList
         data={course}
-        renderItem={renderItem}
         keyExtractor={(item) => item.id}
+        renderItem={renderItem}
       />
     </View>
   );

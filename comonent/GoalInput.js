@@ -20,10 +20,12 @@ const GoalInput = (props) => {
           style={styles.input}
           placeholder="Course Goal"
           value={output}
+          value = {}
           onChangeText={inputMethod}
         />
         <View style={styles.buttonContainer}>
           <View style={styles.buttons}>
+
             <Button title="CANCEL" color={"red"} onPress={props.onCancel} />
           </View>
 

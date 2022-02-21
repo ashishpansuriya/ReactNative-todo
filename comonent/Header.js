@@ -1,36 +1,28 @@
 import React, { useState } from "react";
-import { View, TextInput, Button, StyleSheet, Modal } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 
 const Header = props => {
     return (
         <View style={styles.header} >
-            <Text style = {styles.headerTitle}>props.title </Text>
+            <Text style={styles.headerTitle}>{props.title} </Text>
         </View>
-    );
+    ); 
 };
 
 const styles = StyleSheet.create({
     header: {
         width: '100%',
-        height: '90',
+        height: 90,
+        paddingTop: 25,
         backgroundColor: '#F7287B',
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'center'
     },
 
     headerTitle: {
-        
-        color: 'black',
-        fontSize: '18',
+        color: 'white',
+        fontSize: 18,
     }
-
-
-
-
-
-
-
-
 
 });
 

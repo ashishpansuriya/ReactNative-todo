@@ -4,14 +4,16 @@ import {
   StyleSheet,
 } from "react-native";
 import  Header  from "./comonent/Header";
+import StartGameScreen from "./screens/StartGameScreen";
 
 export default function App() {
 
   return (
-    <View style={styles.screen}>
-       {/* <StatusBar   
-       hidden={route.statusBarHidden} />  */}
+    <View style = {styles.screen}>
      <Header title ="Guess The Number" />
+
+      <StartGameScreen />
+
     </View>
   );
 }

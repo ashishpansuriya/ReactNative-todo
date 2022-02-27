@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
-
+import colors from "../Constants/colors";
 const Header = props => {
     return (
         <View style={styles.header} >
@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
         width: '100%',
         height: 90,
         paddingTop: 25,
-        backgroundColor: '#F7287B',
+        backgroundColor: colors.accent,
         alignItems: 'center',
         justifyContent: 'center'
     },

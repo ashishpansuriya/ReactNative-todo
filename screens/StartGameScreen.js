@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Text, View, StyleSheet, Button, TouchableWithoutFeedback, Keyboard ,Alert} from "react-native";
 import Card from "../comonent/Card";
 import Input from "../comonent/Input";
+import NumberContainer from "../comonent/NumberContainer";
 import colors from "../Constants/colors";
 
 const StartGameScreen = props => {
@@ -13,6 +14,7 @@ const StartGameScreen = props => {
     const numberInputHandler = inputText => {
         
         setEnterValue(inputText.replace(/[^0-9]/g, ''));
+
         
     };
 
@@ -32,11 +34,20 @@ const StartGameScreen = props => {
         setConfirmed(true);
         setSelectNumer(chooseNumber);
         setEnterValue('');
+        Keyboard.dismiss();
     };
 
     let confirmedOutPut;
     if(confirmed){ 
-        confirmedOutPut = <Text style ={{marginVertical : 30, textAlign :'center', fontSize : 20}}>Chosen Numer : {selectNumer}</Text>
+        confirmedOutPut =
+            (<Card style={{ marginVertical: 20, width: '80%' }}>
+                <Text style = {{textAlign : 'center'}}>You selected</Text>
+
+                <NumberContainer> {selectNumer}</NumberContainer>
+
+                <Button title="START GAME" />
+            </Card>);
+
     }
 
     return (

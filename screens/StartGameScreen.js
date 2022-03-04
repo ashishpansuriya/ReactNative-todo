@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState ,useRef, useEffect} from "react";
 import { Text, View, StyleSheet, Button, TouchableWithoutFeedback, Keyboard ,Alert} from "react-native";
 import Card from "../comonent/Card";
 import Input from "../comonent/Input";
+import MyButton from "../comonent/MyButton";
 import NumberContainer from "../comonent/NumberContainer";
 import colors from "../Constants/colors";
+
 
 const StartGameScreen = props => {
 
@@ -11,6 +13,9 @@ const StartGameScreen = props => {
     const [confirmed,setConfirmed] = useState(false);
     const [selectNumer, setSelectNumer] = useState();
 
+   
+
+  
     const numberInputHandler = inputText => {
         setEnterValue(inputText.replace(/[^0-9]/g, ''));
     };
@@ -42,7 +47,9 @@ const StartGameScreen = props => {
 
                 <NumberContainer> {selectNumer}</NumberContainer>
 
-                <Button title="START GAME" onPress={() => props.onStartGame(selectNumer) } />
+            <MyButton
+                onPress={() => props.onStartGame(selectNumer)}
+            >START GAME</MyButton>
             </Card>);
 
     }
@@ -56,7 +63,7 @@ const StartGameScreen = props => {
 
             <Card style={styles.inputContainer}>
                 
-                <Text>Select A Number !</Text>
+                <Text style={{fontFamily : 'OpenSans-Regular'}}>Select A Number !</Text>
 
                     <Input
                         style={styles.input}
@@ -68,7 +75,9 @@ const StartGameScreen = props => {
 
                 <View style={styles.buttonContainer}>
                         <View style={styles.buttons}>
-                            <Button title='Reset' onPress={ resetInputHandler} color={colors.accent} />
+                            <Button title='Reset' onPress={resetInputHandler} color={colors.accent} >
+                        
+                            </Button>
                         </View>
 
                         <View style={styles.buttons}>
@@ -87,8 +96,11 @@ const styles = StyleSheet.create({
 
     heading: {
         textAlign: 'center',
-        fontSize: 20, color: 'black',
-        marginVertical: 20
+        fontSize: 20, 
+        color: 'black',
+        fontFamily:'OpenSans-Bold',
+        marginVertical: 20,
+        fontSize: 20
     },
 
     screen: {

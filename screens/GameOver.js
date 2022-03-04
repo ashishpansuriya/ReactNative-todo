@@ -1,23 +1,20 @@
 import React from 'react';
 import { View, Text, StyleSheet, Button, Image } from 'react-native';
+import MyButton from '../comonent/MyButton';
+import colors from '../Constants/colors';
 
 const GameOver = props => {
     return (
         <View style={styles.screen} >
-            <Text>The Game Is Over..</Text>
+            <Text style={{  alignItems: 'center', textAlign: 'center',fontSize : 30 ,fontStyle:'italic' }}>The Game Is Over..</Text>
+            <View style={styles.imageContainer} >
+                <Image fadeDuration={9000} source={require('../assets/success.png')} resizeMode="cover" style={styles.imagestyle} />
+            </View>
 
-<View style ={styles.imageContainer} >
-<Image source={require('../assets/success.png')} resizeMode ="cover"  style ={styles.imagestyle}/>
-</View>
-           
+            <Text style={{ margin: 20, alignItems: 'center', textAlign: 'center',fontSize : 20 }}>Your phone needed <Text style={{ color: colors.primary }}> {props.roundsNumber}</Text>  Rounds to Guess the Number <Text style={{ color: colors.primary }} >{props.userNum}</Text>. </Text>
 
-            <Text>Number Of Rounds : {props.roundsNumber}</Text>
-            <Text>Number Was : {props.userNum}</Text>
-
-            <Button title='START AGAIN ' onPress={props.onRestart} />
+            <MyButton  onPress={props.onRestart}>START AGAIN</MyButton>
         </View>);
-
-
 }
 
 const styles = StyleSheet.create({
@@ -36,6 +33,7 @@ const styles = StyleSheet.create({
         justifyContent : 'center',
         alignContent: 'center',
         marginVertical : 40,
+        shadowColor: 'black',
         overflow :'hidden',
         borderColor: 'grey',
         borderWidth : 3,

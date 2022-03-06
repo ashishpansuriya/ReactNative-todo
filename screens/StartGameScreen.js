@@ -13,9 +13,6 @@ const StartGameScreen = props => {
     const [confirmed,setConfirmed] = useState(false);
     const [selectNumer, setSelectNumer] = useState();
 
-   
-
-  
     const numberInputHandler = inputText => {
         setEnterValue(inputText.replace(/[^0-9]/g, ''));
     };
@@ -54,6 +51,7 @@ const StartGameScreen = props => {
 
     }
 
+   
     return (
         <TouchableWithoutFeedback
             onPress={() => { Keyboard.dismiss(); }}>

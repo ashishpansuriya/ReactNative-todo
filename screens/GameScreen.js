@@ -1,5 +1,5 @@
 import React, { useState , useRef , useEffect} from "react";
-import { View, Text, StyleSheet ,Button, Alert } from "react-native";
+import { View, Text, StyleSheet, Button, Alert, ScrollView } from "react-native";
 
 import NumberContainer from '../comonent/NumberContainer';
 import Card from '../comonent/Card';
@@ -17,8 +17,11 @@ const genratedRandomNumber = (min, max, exclude) => {
 };
 
 const GameScreen = props => {
-    const [currentNumber, setCurrentNumber] = useState(genratedRandomNumber(1, 100, props.userChoise));
-    const [rounds, setRounds] = useState(0);
+
+    const initialGuess = genratedRandomNumber(1, 100, props.userChoise);
+    const [currentNumber, setCurrentNumber] = useState(initialGuess);
+    // const [rounds, setRounds] = useState(0);
+    const [pastGuess, setPastGuess] = useState([initialGuess]);
     const currentLow = useRef(1);
     const currentHigh = useRef(100);
 
@@ -26,7 +29,7 @@ const GameScreen = props => {
 
     useEffect(()=>{
         if( currentNumber == props.userChoise){
-            props.onGameOver(rounds);
+            props.onGameOver(pastGuess.length);
         }
     }, [currentNumber , userChoise , onGameOver]);
 
@@ -39,13 +42,23 @@ const GameScreen = props => {
         if (direction === 'lower'){
             currentHigh.current = currentNumber;
         }else{
-            currentLow.current = currentNumber;
+            currentLow.current = currentNumber + 1;
         }
 
         const  guessNumber = genratedRandomNumber(currentLow.current , currentHigh.current,currentNumber );
         setCurrentNumber(guessNumber);
-        setRounds(curRounds => curRounds +1);
+        // setRounds(curRounds => curRounds +1);
+        setPastGuess(curPastGuess => [guessNumber, ...curPastGuess]);
     }
+
+    const randerListItem = (value, numOfRounds) => (
+        <View key={value} style ={stles.listItems}>
+            <Text>#{numOfRounds}</Text>
+            <Text>
+                {value}
+            </Text>
+        </View>);
+
 
     return (
         <View style = {stles.screen}>
@@ -55,10 +68,16 @@ const GameScreen = props => {
             
             <Card style = {stles.buttonContainer}>
                 <Button  title="LOWER" onPress={nextGuessNumber.bind(this,'lower')} />
-                <Button  title="GRETER" onPress={nextGuessNumber.bind(this,'grater')} />
-
+                <Button title="GRETER" onPress={nextGuessNumber.bind(this, 'grater')} />
             </Card>
-        </View>
+
+            <View style = {{width : 250,justifyContent :'center'  }}>
+            <ScrollView contentContainerStyle ={{flexGrow : 1}}>
+                {pastGuess.map((guess ,index) => randerListItem(guess ,pastGuess.length - index  ))}
+
+            </ScrollView>
+            </View>
+        </View> 
     );
 
 };
@@ -82,6 +101,21 @@ const stles = StyleSheet.create({
         width: '95%',
         borderRadius: 6,
         textAlign: 'center'
+    },
+
+    listItems:{
+        maxWidth : 250,
+        width : '100%',
+        borderColor : '#ccc',
+        borderWidth : 1,
+        padding : 15,
+        marginTop : 15,
+        flex :1,
+        alignContent: 'center',
+        justifyContent :'space-between',
+        backgroundColor : 'white',
+        flexDirection :'row',
+        borderRadius : 10,
     }
 });
 

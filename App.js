@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import {
   View,
   StyleSheet,
+  SafeAreaView
 } from "react-native";
 import  Header  from "./comonent/Header";
 import GameScreen from "./screens/GameScreen";
@@ -41,12 +42,12 @@ if(userNumber && guessRound <= 0 ){
 }
 
   return (
-    <View style = {styles.screen}>
+    <SafeAreaView style={styles.screen}>
      <Header title ="Guess The Number" />
 
     {content}
 
-    </View>
+    </SafeAreaView>
   );
 }
 

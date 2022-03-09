@@ -78,7 +78,7 @@ const GameScreen = props => {
 
 
     let checkStyle = stles.listStyle;
-    if (availableWidth  < 350) {
+    if (availableWidth < 400) {
         checkStyle = stles.listStyleSmall;
     }
 
@@ -122,13 +122,13 @@ const GameScreen = props => {
                 <Button title="GRETER" onPress={nextGuessNumber.bind(this, 'grater')} />
             </Card>
 
-                <View style={checkStyle}>
+                <View style={stles.listStyle}>
                     {/* <ScrollView contentContainerStyle ={{flexGrow : 1}}>
                 {pastGuess.map((guess ,index) => randerListItem(guess ,pastGuess.length - index  ))}
 
             </ScrollView> */}
 
-                    <FlatList keyExtractor={(item) => item} data={pastGuess} renderItem={randerListItem.bind(this, pastGuess.length)} />
+                    <FlatList style={{ flexGrow: 1 }} keyExtractor={(item) => item} data={pastGuess} renderItem={randerListItem.bind(this, pastGuess.length)} />
             </View>
         </View> 
         </ScrollView>
@@ -151,25 +151,24 @@ const stles = StyleSheet.create({
 
     listStyle: {
         flex: 1,
-        width: '100%',
-        marginLeft: 30,
+        width: 200,
+        marginTop: 10,
         justifyContent: 'center',
     },
 
     listStyleSmall: {
         width: '100%',
         justifyContent: 'center',
-        flex: 1,
+
     },
 
     buttonContainer : {
         flexDirection : 'row',
         justifyContent : 'space-around',
         marginTop: Dimensions.get('window').height > 300 ? 20 : 10,
-        width : 300,
-         maxWidth : '60%'
+        width: 300,
+        maxWidth: '90%'
     },
-
 
     input: {
         width: '95%',
